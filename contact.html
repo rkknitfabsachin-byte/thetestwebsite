@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact Us | RK Knit Fab</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- PAGE-ONLY STYLES -->
+  <style>
+    /* Contact Specific Styles - Clean & Minimal */
+    .contact-intro {
+      max-width: 800px;
+      margin: 0 auto 60px;
+      text-align: center;
+      opacity: .85;
+      color: var(--text-secondary);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: flex-start;
+    }
+
+    .contact-info {
+      display: grid;
+      gap: 24px;
+    }
+
+    .info-box {
+      background: var(--bg-secondary);
+      border-radius: 20px;
+      padding: 30px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 12px var(--shadow-color);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .info-box:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-primary);
+      box-shadow: 0 12px 24px var(--shadow-color);
+    }
+
+    .info-box h4 {
+      font-size: 18px;
+      margin-bottom: 12px;
+      color: var(--accent-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .info-box p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .contact-form {
+      background: var(--bg-secondary);
+      border-radius: 24px;
+      padding: 40px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 20px var(--shadow-color);
+    }
+
+    .contact-form h4 {
+      font-size: 24px;
+      margin-bottom: 24px;
+      color: var(--text-primary);
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      margin-bottom: 20px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      font-family: inherit;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 150px;
+    }
+
+    .contact-form button {
+      width: 100%;
+      padding: 16px;
+      background: var(--accent-primary);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+    }
+
+    .contact-form button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+      filter: brightness(1.1);
+    }
+
+    .map-container {
+      margin-top: 60px;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 20px var(--shadow-color);
+      height: 450px;
+      position: relative;
+      background: var(--bg-secondary);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      filter: grayscale(1) contrast(1.2) opacity(0.8);
+      transition: all 0.5s ease;
+    }
+
+    [data-theme="light"] .map-container iframe {
+      filter: grayscale(0.2) contrast(1) opacity(0.9);
+    }
+
+    .map-container:hover iframe {
+      filter: grayscale(0) contrast(1) opacity(1);
+    }
+
+    .map-overlay-tag {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: var(--accent-primary);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 700;
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+      pointer-events: none;
+    }
+
+    @media(max-width:900px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .info-box {
+        padding: 24px;
+      }
+
+      .contact-form {
+        padding: 30px;
+      }
+
+      .map-container {
+        height: 350px;
+        margin-top: 40px;
+      }
+    }
+  </style>
+  <link rel="icon" type="image/png" href="images/RKKNITFABLOGO.png">
+</head>
+
+<body>
+
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="images/RKKNITFABLOGO.png" alt="RK Knit Fab">
+      <h1>RK Knit Fab</h1>
+    </a>
+    <div class="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="gsm-calculator.html">Calculators</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- CONTACT SECTION -->
+  <section>
+    <h3>Get in Touch</h3>
+
+    <div class="contact-intro">
+      Whether you are looking for fabric pricing, bulk order discussions,
+      or sample availability, our team is ready to assist you.
+      Share your requirement and we’ll get back to you.
+    </div>
+
+    <div class="contact-grid">
+
+      <!-- LEFT: CONTACT INFO -->
+      <div class="contact-info">
+
+        <div class="info-box">
+          <h4>📍 Office & Factory</h4>
+          <p>
+            RK Knit Fab<br>
+            XXIX - 144/B MAIN ROAD GIASPURA, VIA GT ROAD, Ludhiana, Punjab 141014<br>
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h4>📞 Phone</h4>
+          <p>
+            +91 9914166611<br>
+            +91 7087079969
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h4>✉️ Email</h4>
+          <p>
+            rkknitfabb@gmail.com<br>
+            rkknitfabldh@gmail.com
+          </p>
+        </div>
+
+        <div class="info-box">
+          <h4>🕒 Business Hours</h4>
+          <p>
+            Monday – Saturday<br>
+            10:00 AM – 8:00 PM
+          </p>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: FORM -->
+      <div class="contact-form">
+        <h4>Send an Enquiry</h4>
+
+        <form id="enquiryForm">
+          <input name="name" placeholder="Your Name" required>
+          <input name="company" placeholder="Company Name">
+          <input name="email" type="email" placeholder="Email" required>
+          <input name="requirement" placeholder="Fabric Requirement">
+          <textarea name="message" placeholder="Message"></textarea>
+          <button type="submit">Submit Enquiry</button>
+        </form>
+
+      </div>
+
+    </div>
+
+    <!-- MAP SECTION -->
+    <div class="map-container">
+      <div class="map-overlay-tag">RK KNIT FAB</div>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3423.6358177579!2d75.8987826!3d30.8776676!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a82cb3f447b91%3A0x2125caa6c4cec0d7!2sRk%20Knit%20Fab%20-Manufacturer%20of%20Knitted%2C%20Dryfit%2C%20spun%20%26%20polyester%20fabrics!5e0!3m2!1sen!2sin!4v1707144000000!5m2!1sen!2sin"
+        style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- MODERN FOOTER -->
+  <footer class="modern-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="nav-logo" style="margin-bottom: 24px;">
+          <img src="images/RKKNITFABLOGO.png" alt="RK Knit Fab" style="height: 48px;">
+          <h1 style="font-size: 24px;">RK Knit Fab</h1>
+        </div>
+        <p>
+          World-class fabric manufacturers specializing in high-consistency knitted fabrics for the global garment
+          industry. Precision-engineered since 1997.
+        </p>
+        <div class="social-strip">
+          <a href="#" aria-label="Facebook"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3V2z" />
+            </svg></a>
+          <a href="#" aria-label="Instagram"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.265-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.013 7.053.072 2.695.272.273 2.69.073 7.052.013 8.332 0 8.742 0 12s.013 3.668.072 4.948c.2 4.358 2.618 6.778 6.98 6.978 1.28.059 1.689.072 4.948.072s3.668-.013 4.948-.072c4.351-.2 6.77-2.618 6.97-6.978.059-1.28.073-1.689.073-4.948s-.014-3.668-.072-4.948c-.2-4.337-2.621-6.758-6.97-6.978C15.668.013 15.258 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+            </svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+            </svg></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Fabric Catalogue</a></li>
+          <li><a href="gsm-calculator.html">Calculators</a></li>
+          <li><a href="about.html">About Our Journey</a></li>
+          <li><a href="contact.html">Get in Touch</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Fabrics</h4>
+        <ul class="footer-links">
+          <li><a href="DOT KNIT.html">Dot Knit</a></li>
+          <li><a href="SPUN MATTY.html">Spun Matty</a></li>
+          <li><a href="SPUN FLEECE.html">Spun Fleece</a></li>
+          <li><a href="LOOP KNIT.html">Loop Knit</a></li>
+          <li><a href="products.html">View All Products</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="footer-contact-item">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <span>Factory: Ludhiana, Punjab, India</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          <span>sales@rkknitfab.com</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path
+              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          <span>+91 78378 73646</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 RK Knit Fab. Engineering Excellence in Textiles.</p>
+      <p>Site by RK Knit Fab Internal Media Group</p>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP -->
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+    </svg>
+  </button>
+
+
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <div class="theme-toggle-icon">
+      <!-- Moon Icon (Dark Mode) -->
+      <svg class="moon-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" fill="#3b82f6" />
+      </svg>
+      <!-- Sun Icon (Light Mode) -->
+      <svg class="sun-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="5" fill="#fbbf24" />
+        <path stroke-linecap="round"
+          d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+      </svg>
+    </div>
+  </button>
+
+
+  <a href="https://wa.me/917837873646" class="whatsapp">WhatsApp</a>
+
+  <script>
+    const form = document.getElementById("enquiryForm");
+    if (form) {
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const data = {
+          name: formData.get("name"),
+          company: formData.get("company"),
+          email: formData.get("email"),
+          requirement: formData.get("requirement"),
+          message: formData.get("message"),
+          page: window.location.pathname
+        };
+
+        fetch("https://script.google.com/macros/s/AKfycbzrC7yZzGlZ3-fmHJaZTtlIxQ15X9IdpyrdCso_EcHnUfZJMz67mm_lHu5QjF9zV8Xs/exec", {
+          method: "POST",
+          body: JSON.stringify(data)
+        })
+          .then(res => res.json())
+          .then(res => {
+            alert("Thank you! Your enquiry has been sent.");
+            form.reset();
+          })
+          .catch(err => {
+            alert("Something went wrong. Please try again.");
+            console.error(err);
+          });
+      });
+    }
+  </script>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

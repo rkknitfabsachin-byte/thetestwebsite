@@ -1,0 +1,828 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Our Products | RK Knit Fab</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- PAGE-ONLY STYLES -->
+  <style>
+    /* Products Specific Styles - Clean & Minimal */
+    .catalogue-intro {
+      max-width: 900px;
+      margin: 0 auto 40px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 18px;
+    }
+
+    /* FILTER BAR */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 50px;
+    }
+
+    .filter-btn {
+      padding: 10px 22px;
+      border-radius: 30px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--accent-primary);
+      color: #fff;
+      border-color: var(--accent-primary);
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* CATALOGUE GRID */
+    .catalogue-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 40px 32px;
+    }
+
+    .product-card {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px var(--shadow-color);
+      border-color: var(--accent-primary);
+    }
+
+    .card-image-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 100%;
+      /* 1:1 Aspect Ratio */
+      overflow: hidden;
+      background: var(--bg-tertiary);
+    }
+
+    .product-card img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .product-card:hover img {
+      transform: scale(1.08);
+    }
+
+    .product-content {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .product-content h4 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+      letter-spacing: -0.01em;
+    }
+
+    .product-content p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      opacity: 0.8;
+      margin-bottom: 20px;
+      line-height: 1.5;
+      flex-grow: 1;
+    }
+
+    .view-btn {
+      align-self: flex-start;
+      padding: 10px 24px;
+      background: transparent;
+      color: var(--accent-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .product-card:hover .view-btn {
+      background: var(--accent-primary);
+      color: #fff;
+      border-color: var(--accent-primary);
+      padding-right: 20px;
+    }
+
+    .view-btn svg {
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover .view-btn svg {
+      transform: translateX(4px);
+    }
+
+    /* CATEGORY TAG */
+    .tag {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      padding: 6px 14px;
+      border-radius: 30px;
+      font-size: 11px;
+      font-weight: 800;
+      z-index: 2;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+    }
+
+    /* SEARCH BAR */
+    .search-container {
+      max-width: 600px;
+      margin: 0 auto 30px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 16px 24px 16px 50px;
+      border-radius: 40px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      font-size: 16px;
+      outline: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px var(--shadow-color);
+      backdrop-filter: blur(10px);
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+      background: var(--bg-tertiary);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    @media(max-width:600px) {
+      .product-card img {
+        height: 300px;
+      }
+
+      .catalogue-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .product-overlay {
+        padding: 20px;
+      }
+
+      .search-container {
+        margin: 0 20px 20px;
+      }
+    }
+  </style>
+  <link rel="icon" type="image/png" href="images/RKKNITFABLOGO.png">
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="images/RKKNITFABLOGO.png" alt="RK Knit Fab">
+      <h1>RK Knit Fab</h1>
+    </a>
+    <div class="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="gsm-calculator.html">Calculators</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- PAGE HEADER -->
+  <section>
+    <h3>Our Fabric Catalogue</h3>
+
+    <div class="catalogue-intro">
+      Browse our fabric range using the filters below to quickly find
+      the right fabric for your production needs.
+    </div>
+
+    <!-- SEARCH & FILTERS -->
+    <div class="search-container">
+      <svg class="search-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"
+        viewBox="0 0 24 24">
+        <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+      <input type="text" id="fabricSearch" class="search-input" placeholder="Search fabrics by name...">
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All Fabrics</button>
+      <button class="filter-btn" data-filter="Sportswear">Sportswear</button>
+      <button class="filter-btn" data-filter="Uniform">Uniform</button>
+      <button class="filter-btn" data-filter="fleece">Winter Wear</button>
+      <button class="filter-btn" data-filter="Casual">Casual Wear</button>
+    </div>
+
+    <!-- PRODUCTS -->
+
+    <div class="catalogue-grid">
+
+      <a href="DOT KNIT.html" class="product-card" data-category="Sportswear">
+        <div class="card-image-wrapper">
+          <span class="tag">Sportswear/Active Wear</span>
+          <img src="DOT KNIT(MAROON)/MAROON 1.jpg" loading="lazy" alt="DOT KNIT"
+          onerror="this.src='https://placehold.co/600x400?text=DOT KNIT'">
+        </div>
+        <div class="product-content">
+          <h4>DOT KNIT</h4>
+          <p>Premium quality sportswear/active wear.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="MICRO PP.html" class="product-card" data-category="Sportswear">
+        <div class="card-image-wrapper">
+          <span class="tag">Sportswear/Active Wear</span>
+          <img src="MICRO PP/1.jpg" loading="lazy" alt="MICRO PP"
+          onerror="this.src='https://placehold.co/600x400?text=MICRO PP'">
+        </div>
+        <div class="product-content">
+          <h4>MICRO PP</h4>
+          <p>Premium quality sportswear/active wear.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="RICE KNIT.html" class="product-card" data-category="Sportswear">
+        <div class="card-image-wrapper">
+          <span class="tag">Sportswear/Active Wear</span>
+          <img src="images/FP1.jpg" loading="lazy" alt="RICE KNIT"
+          onerror="this.src='https://placehold.co/600x400?text=RICE KNIT'">
+        </div>
+        <div class="product-content">
+          <h4>RICE KNIT</h4>
+          <p>Premium quality sportswear/active wear.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="NIRMAL KNIT.html" class="product-card" data-category="Sportswear">
+        <div class="card-image-wrapper">
+          <span class="tag">Sportswear/Active Wear</span>
+          <img src="images/FP1.jpg" loading="lazy" alt="NIRMAL KNIT"
+          onerror="this.src='https://placehold.co/600x400?text=NIRMAL KNIT'">
+        </div>
+        <div class="product-content">
+          <h4>NIRMAL KNIT</h4>
+          <p>Premium quality sportswear/active wear.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="SARINA.html" class="product-card" data-category="Sportswear">
+        <div class="card-image-wrapper">
+          <span class="tag">Sportswear/Active Wear</span>
+          <img src="images/FP1.jpg" loading="lazy" alt="SARINA"
+          onerror="this.src='https://placehold.co/600x400?text=SARINA'">
+        </div>
+        <div class="product-content">
+          <h4>SARINA</h4>
+          <p>Premium quality sportswear/active wear.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="FOOTBALL.html" class="product-card" data-category="Sportswear">
+        <div class="card-image-wrapper">
+          <span class="tag">Sportswear/Active Wear</span>
+          <img src="FOOTBALL KNIT/football 1.jpg" loading="lazy" alt="FOOTBALL"
+          onerror="this.src='https://placehold.co/600x400?text=FOOTBALL'">
+        </div>
+        <div class="product-content">
+          <h4>FOOTBALL</h4>
+          <p>Premium quality sportswear/active wear.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="CROWN KNIT.html" class="product-card" data-category="Sportswear">
+        <div class="card-image-wrapper">
+          <span class="tag">Sportswear/Active Wear</span>
+          <img src="CROWN KNIT/crown 1.jpg" loading="lazy" alt="CROWN KNIT"
+          onerror="this.src='https://placehold.co/600x400?text=CROWN KNIT'">
+        </div>
+        <div class="product-content">
+          <h4>CROWN KNIT</h4>
+          <p>Premium quality sportswear/active wear.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="BOX KNIT.html" class="product-card" data-category="Sportswear">
+        <div class="card-image-wrapper">
+          <span class="tag">Sportswear/Active Wear</span>
+          <img src="BOX KNIT/yellow box.jpg" loading="lazy" alt="BOX KNIT"
+          onerror="this.src='https://placehold.co/600x400?text=BOX KNIT'">
+        </div>
+        <div class="product-content">
+          <h4>BOX KNIT</h4>
+          <p>Premium quality sportswear/active wear.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="POPCORN KNIT.html" class="product-card" data-category="Sportswear">
+        <div class="card-image-wrapper">
+          <span class="tag">Sportswear/Active Wear</span>
+          <img src="POPCORN KNIT/popcorn1.jpg" loading="lazy" alt="POPCORN KNIT"
+          onerror="this.src='https://placehold.co/600x400?text=POPCORN KNIT'">
+        </div>
+        <div class="product-content">
+          <h4>POPCORN KNIT</h4>
+          <p>Premium quality sportswear/active wear.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="JAQUARD.html" class="product-card" data-category="Sportswear">
+        <div class="card-image-wrapper">
+          <span class="tag">Sportswear/Active Wear</span>
+          <img src="images/FP1.jpg" loading="lazy" alt="JAQUARD"
+          onerror="this.src='https://placehold.co/600x400?text=JAQUARD'">
+        </div>
+        <div class="product-content">
+          <h4>JAQUARD</h4>
+          <p>Premium quality sportswear/active wear.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="REEBOK KNIT.html" class="product-card" data-category="Sportswear">
+        <div class="card-image-wrapper">
+          <span class="tag">Sportswear/Active Wear</span>
+          <img src="REEBOK KNIT/Variant - Crimson Flow.png" loading="lazy" alt="REEBOK KNIT"
+          onerror="this.src='https://placehold.co/600x400?text=REEBOK KNIT'">
+        </div>
+        <div class="product-content">
+          <h4>REEBOK KNIT</h4>
+          <p>Premium quality sportswear/active wear.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="SAP MATTY.html" class="product-card" data-category="Uniform">
+        <div class="card-image-wrapper">
+          <span class="tag">Uniform Fabrics</span>
+          <img src="images/QC1.jpg" loading="lazy" alt="SAP MATTY"
+          onerror="this.src='https://placehold.co/600x400?text=SAP MATTY'">
+        </div>
+        <div class="product-content">
+          <h4>SAP MATTY</h4>
+          <p>Premium quality uniform fabrics.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="SPUN MATTY.html" class="product-card" data-category="Uniform">
+        <div class="card-image-wrapper">
+          <span class="tag">Uniform Fabrics</span>
+          <img src="SPUN MATTY(BEIGE)/1.jpg" loading="lazy" alt="SPUN MATTY"
+          onerror="this.src='https://placehold.co/600x400?text=SPUN MATTY'">
+        </div>
+        <div class="product-content">
+          <h4>SPUN MATTY</h4>
+          <p>Premium quality uniform fabrics.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="PC MATTY.html" class="product-card" data-category="Uniform">
+        <div class="card-image-wrapper">
+          <span class="tag">Uniform Fabrics</span>
+          <img src="images/QC1.jpg" loading="lazy" alt="PC MATTY"
+          onerror="this.src='https://placehold.co/600x400?text=PC MATTY'">
+        </div>
+        <div class="product-content">
+          <h4>PC MATTY</h4>
+          <p>Premium quality uniform fabrics.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="AIRJET MATTY.html" class="product-card" data-category="Uniform">
+        <div class="card-image-wrapper">
+          <span class="tag">Uniform Fabrics</span>
+          <img src="images/QC1.jpg" loading="lazy" alt="AIRJET MATTY"
+          onerror="this.src='https://placehold.co/600x400?text=AIRJET MATTY'">
+        </div>
+        <div class="product-content">
+          <h4>AIRJET MATTY</h4>
+          <p>Premium quality uniform fabrics.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="SPUN P KNIT.html" class="product-card" data-category="Uniform">
+        <div class="card-image-wrapper">
+          <span class="tag">Uniform Fabrics</span>
+          <img src="images/QC1.jpg" loading="lazy" alt="SPUN P KNIT"
+          onerror="this.src='https://placehold.co/600x400?text=SPUN P KNIT'">
+        </div>
+        <div class="product-content">
+          <h4>SPUN P KNIT</h4>
+          <p>Premium quality uniform fabrics.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="PC P KNIT.html" class="product-card" data-category="Uniform">
+        <div class="card-image-wrapper">
+          <span class="tag">Uniform Fabrics</span>
+          <img src="images/QC1.jpg" loading="lazy" alt="PC P KNIT"
+          onerror="this.src='https://placehold.co/600x400?text=PC P KNIT'">
+        </div>
+        <div class="product-content">
+          <h4>PC P KNIT</h4>
+          <p>Premium quality uniform fabrics.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="NIRMAL KNIT.html" class="product-card" data-category="Uniform">
+        <div class="card-image-wrapper">
+          <span class="tag">Uniform Fabrics</span>
+          <img src="images/QC1.jpg" loading="lazy" alt="NIRMAL KNIT"
+          onerror="this.src='https://placehold.co/600x400?text=NIRMAL KNIT'">
+        </div>
+        <div class="product-content">
+          <h4>NIRMAL KNIT</h4>
+          <p>Premium quality uniform fabrics.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="SPUN FLEECE.html" class="product-card" data-category="fleece">
+        <div class="card-image-wrapper">
+          <span class="tag">Winter Wear Fabrics</span>
+          <img src="images/FP2.jpg" loading="lazy" alt="SPUN FLEECE"
+          onerror="this.src='https://placehold.co/600x400?text=SPUN FLEECE'">
+        </div>
+        <div class="product-content">
+          <h4>SPUN FLEECE</h4>
+          <p>Premium quality winter wear fabrics.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="PC FLEECE.html" class="product-card" data-category="fleece">
+        <div class="card-image-wrapper">
+          <span class="tag">Winter Wear Fabrics</span>
+          <img src="images/FP2.jpg" loading="lazy" alt="PC FLEECE"
+          onerror="this.src='https://placehold.co/600x400?text=PC FLEECE'">
+        </div>
+        <div class="product-content">
+          <h4>PC FLEECE</h4>
+          <p>Premium quality winter wear fabrics.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="AIRJET FLEECE.html" class="product-card" data-category="fleece">
+        <div class="card-image-wrapper">
+          <span class="tag">Winter Wear Fabrics</span>
+          <img src="images/FP2.jpg" loading="lazy" alt="AIRJET FLEECE"
+          onerror="this.src='https://placehold.co/600x400?text=AIRJET FLEECE'">
+        </div>
+        <div class="product-content">
+          <h4>AIRJET FLEECE</h4>
+          <p>Premium quality winter wear fabrics.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="THERMAL FLEECE.html" class="product-card" data-category="fleece">
+        <div class="card-image-wrapper">
+          <span class="tag">Winter Wear Fabrics</span>
+          <img src="images/FP2.jpg" loading="lazy" alt="THERMAL FLEECE"
+          onerror="this.src='https://placehold.co/600x400?text=THERMAL FLEECE'">
+        </div>
+        <div class="product-content">
+          <h4>THERMAL FLEECE</h4>
+          <p>Premium quality winter wear fabrics.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="PC BIRDEYE.html" class="product-card" data-category="Casual">
+        <div class="card-image-wrapper">
+          <span class="tag">Casual Wear Fabrics</span>
+          <img src="images/movement.jpg" loading="lazy" alt="PC BIRDEYE"
+          onerror="this.src='https://placehold.co/600x400?text=PC BIRDEYE'">
+        </div>
+        <div class="product-content">
+          <h4>PC BIRDEYE</h4>
+          <p>Premium quality casual wear fabrics.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="CROCHET.html" class="product-card" data-category="Casual">
+        <div class="card-image-wrapper">
+          <span class="tag">Casual Wear Fabrics</span>
+          <img src="images/movement.jpg" loading="lazy" alt="CROCHET"
+          onerror="this.src='https://placehold.co/600x400?text=CROCHET'">
+        </div>
+        <div class="product-content">
+          <h4>CROCHET</h4>
+          <p>Premium quality casual wear fabrics.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="INTERLOCK.html" class="product-card" data-category="Casual">
+        <div class="card-image-wrapper">
+          <span class="tag">Casual Wear Fabrics</span>
+          <img src="images/movement.jpg" loading="lazy" alt="INTERLOCK"
+          onerror="this.src='https://placehold.co/600x400?text=INTERLOCK'">
+        </div>
+        <div class="product-content">
+          <h4>INTERLOCK</h4>
+          <p>Premium quality casual wear fabrics.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="SINKER.html" class="product-card" data-category="Casual">
+        <div class="card-image-wrapper">
+          <span class="tag">Casual Wear Fabrics</span>
+          <img src="images/movement.jpg" loading="lazy" alt="SINKER"
+          onerror="this.src='https://placehold.co/600x400?text=SINKER'">
+        </div>
+        <div class="product-content">
+          <h4>SINKER</h4>
+          <p>Premium quality casual wear fabrics.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="LOOP KNIT.html" class="product-card" data-category="Casual">
+        <div class="card-image-wrapper">
+          <span class="tag">Casual Wear Fabrics</span>
+          <img src="images/movement.jpg" loading="lazy" alt="LOOP KNIT"
+          onerror="this.src='https://placehold.co/600x400?text=LOOP KNIT'">
+        </div>
+        <div class="product-content">
+          <h4>LOOP KNIT</h4>
+          <p>Premium quality casual wear fabrics.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="WAFFLE.html" class="product-card" data-category="Casual">
+        <div class="card-image-wrapper">
+          <span class="tag">Casual Wear Fabrics</span>
+          <img src="images/movement.jpg" loading="lazy" alt="WAFFLE"
+          onerror="this.src='https://placehold.co/600x400?text=WAFFLE'">
+        </div>
+        <div class="product-content">
+          <h4>WAFFLE</h4>
+          <p>Premium quality casual wear fabrics.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="ZARA KNIT.html" class="product-card" data-category="Casual">
+        <div class="card-image-wrapper">
+          <span class="tag">Casual Wear Fabrics</span>
+          <img src="images/movement.jpg" loading="lazy" alt="ZARA KNIT"
+          onerror="this.src='https://placehold.co/600x400?text=ZARA KNIT'">
+        </div>
+        <div class="product-content">
+          <h4>ZARA KNIT</h4>
+          <p>Premium quality casual wear fabrics.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+      <a href="KETONIC.html" class="product-card" data-category="Casual">
+        <div class="card-image-wrapper">
+          <span class="tag">Casual Wear Fabrics</span>
+          <img src="images/movement.jpg" loading="lazy" alt="KETONIC"
+          onerror="this.src='https://placehold.co/600x400?text=KETONIC'">
+        </div>
+        <div class="product-content">
+          <h4>KETONIC</h4>
+          <p>Premium quality casual wear fabrics.</p>
+          <span class="view-btn">View Details</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- MODERN FOOTER -->
+  <!-- MODERN FOOTER -->
+  <footer class="modern-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="nav-logo" style="margin-bottom: 24px;">
+          <img src="images/RKKNITFABLOGO.png" alt="RK Knit Fab" style="height: 48px;">
+          <h1 style="font-size: 24px;">RK Knit Fab</h1>
+        </div>
+        <p>
+          World-class fabric manufacturers specializing in high-consistency knitted fabrics for the global garment
+          industry. Precision-engineered since 1997.
+        </p>
+        <div class="social-strip">
+          <a href="#" aria-label="Facebook"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3V2z" />
+            </svg></a>
+          <a href="#" aria-label="Instagram"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.265-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.013 7.053.072 2.695.272.273 2.69.073 7.052.013 8.332 0 8.742 0 12s.013 3.668.072 4.948c.2 4.358 2.618 6.778 6.98 6.978 1.28.059 1.689.072 4.948.072s3.668-.013 4.948-.072c4.351-.2 6.77-2.618 6.97-6.978.059-1.28.073-1.689.073-4.948s-.014-3.668-.072-4.948c-.2-4.337-2.621-6.758-6.97-6.978C15.668.013 15.258 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+            </svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+              <path
+                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+            </svg></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Fabric Catalogue</a></li>
+          <li><a href="gsm-calculator.html">Calculators</a></li>
+          <li><a href="about.html">About Our Journey</a></li>
+          <li><a href="contact.html">Get in Touch</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Fabrics</h4>
+        <ul class="footer-links">
+          <li><a href="DOT KNIT.html">Dot Knit</a></li>
+          <li><a href="SPUN MATTY.html">Spun Matty</a></li>
+          <li><a href="SPUN FLEECE.html">Spun Fleece</a></li>
+          <li><a href="LOOP KNIT.html">Loop Knit</a></li>
+          <li><a href="products.html">View All Products</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="footer-contact-item">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+            <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <span>Factory: Ludhiana, Punjab, India</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          <span>sales@rkknitfab.com</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path
+              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+          </svg>
+          <span>+91 78378 73646</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 RK Knit Fab. Engineering Excellence in Textiles.</p>
+      <p>Site by RK Knit Fab Internal Media Group</p>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP -->
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">
+    <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+    </svg>
+  </button>
+
+
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+    <div class="theme-toggle-icon">
+      <!-- Moon Icon (Dark Mode) -->
+      <svg class="moon-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+          d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" fill="#3b82f6" />
+      </svg>
+      <!-- Sun Icon (Light Mode) -->
+      <svg class="sun-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="5" fill="#fbbf24" />
+        <path stroke-linecap="round"
+          d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+      </svg>
+    </div>
+  </button>
+
+
+  <a href="https://wa.me/917837873646" class="whatsapp">WhatsApp</a>
+  <!-- ADD YOUR WHATSAPP LINK ABOVE -->
+
+  <!-- FILTER & SEARCH SCRIPT -->
+  <script>
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const products = document.querySelectorAll('.product-card');
+    const searchInput = document.getElementById('fabricSearch');
+
+    function filterProducts() {
+      const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+      const searchText = searchInput.value.toLowerCase();
+
+      products.forEach(card => {
+        const category = card.dataset.category;
+        const fabricName = card.querySelector('h4').textContent.toLowerCase();
+
+        const matchesCategory = activeFilter === 'all' || category === activeFilter;
+        const matchesSearch = fabricName.includes(searchText);
+
+        if (matchesCategory && matchesSearch) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        filterProducts();
+      });
+    });
+
+    searchInput.addEventListener('input', filterProducts);
+  </script>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
