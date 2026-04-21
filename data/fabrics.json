@@ -1,0 +1,452 @@
+[
+  {
+    "id": "dot-knit",
+    "name": "DOT KNIT",
+    "categoryId": "Sportswear",
+    "categoryName": "Sportswear/Active Wear",
+    "image": "DOT KNIT(MAROON)/MAROON 1.jpg",
+    "description": "Dot knit fabric features a soft, breathable structure with a subtle dotted texture, offering comfort, stretch, and a stylish finish—ideal for everyday and active wear.",
+    "specs": {
+      "gsm": "160/180",
+      "width": "42\"",
+      "composition": "100% Polyester",
+      "finish": "Tubular & Openwidth finish",
+      "moq": "300 Kg"
+    }
+  },
+  {
+    "id": "micro-pp",
+    "name": "MICRO PP",
+    "categoryId": "Sportswear",
+    "categoryName": "Sportswear/Active Wear",
+    "image": "MICRO PP/1.jpg",
+    "description": "Micro PP fabric is an ultra-lightweight, moisture-wicking material made from fine polypropylene fibres, designed for quick drying and superior comfort—ideal for active and performance wear.",
+    "specs": {
+      "gsm": "140 / 150",
+      "width": "42” ",
+      "composition": "100% Polyester",
+      "finish": "",
+      "moq": "300Kg"
+    }
+  },
+  {
+    "id": "rice-knit",
+    "name": "RICE KNIT",
+    "categoryId": "Sportswear",
+    "categoryName": "Sportswear/Active Wear",
+    "image": "images/FP1.jpg",
+    "description": "Rice knit fabric features a unique grain-like textured pattern that offers softness, breathability, and durability, making it perfect for comfortable and stylish everyday wear.",
+    "specs": {
+      "gsm": "160 / 200",
+      "width": "42\"",
+      "composition": "100% Polyester",
+      "finish": "",
+      "moq": "300Kg"
+    }
+  },
+  {
+    "id": "nirmal-knit-sportswear",
+    "name": "NIRMAL KNIT",
+    "categoryId": "Sportswear",
+    "categoryName": "Sportswear/Active Wear",
+    "image": "images/FP1.jpg",
+    "description": "Nirmal knit fabric is a soft and smooth knitted material designed for everyday comfort, offering breathability and a pleasant feel against the skin.",
+    "specs": {
+      "gsm": "160 / 180",
+      "width": "42”",
+      "composition": "100% Polyester",
+      "finish": "Bio Wash / Compact",
+      "moq": "300 Kg"
+    }
+  },
+  {
+    "id": "sarina",
+    "name": "SARINA",
+    "categoryId": "Sportswear",
+    "categoryName": "Sportswear/Active Wear",
+    "image": "images/FP1.jpg",
+    "description": "Sarina fabric is a smooth and durable polyester interlock knit with moisture-wicking and quick-dry properties, making it ideal for sportswear, uniforms, and everyday active use.",
+    "specs": {
+      "gsm": "110/130",
+      "width": "42” ",
+      "composition": "100% Polyester",
+      "finish": "",
+      "moq": "300 Kg"
+    }
+  },
+  {
+    "id": "football",
+    "name": "FOOTBALL",
+    "categoryId": "Sportswear",
+    "categoryName": "Sportswear/Active Wear",
+    "image": "FOOTBALL KNIT/football 1.jpg",
+    "description": "Premium quality sportswear/active wear.",
+    "specs": {
+      "gsm": "180 / 200",
+      "width": "42” ",
+      "composition": "100% Polyester",
+      "finish": "",
+      "moq": "300 Kg"
+    }
+  },
+  {
+    "id": "crown-knit",
+    "name": "CROWN KNIT",
+    "categoryId": "Sportswear",
+    "categoryName": "Sportswear/Active Wear",
+    "image": "CROWN KNIT/crown 1.jpg",
+    "description": "Premium quality sportswear/active wear.",
+    "specs": {
+      "gsm": "160 / 180",
+      "width": "42\"",
+      "composition": "100% Polyester",
+      "finish": "100% Polyester",
+      "moq": "300 Kg"
+    }
+  },
+  {
+    "id": "box-knit",
+    "name": "BOX KNIT",
+    "categoryId": "Sportswear",
+    "categoryName": "Sportswear/Active Wear",
+    "image": "BOX KNIT/yellow box.jpg",
+    "description": "Premium quality sportswear/active wear.",
+    "specs": {
+      "gsm": "130/160",
+      "width": "36\"",
+      "composition": "100% Polyester",
+      "finish": "",
+      "moq": "300 Kg"
+    }
+  },
+  {
+    "id": "popcorn-knit",
+    "name": "POPCORN KNIT",
+    "categoryId": "Sportswear",
+    "categoryName": "Sportswear/Active Wear",
+    "image": "POPCORN KNIT/popcorn1.jpg",
+    "description": "Premium quality sportswear/active wear.",
+    "specs": {
+      "gsm": "200",
+      "width": "44\"",
+      "composition": "100% Polyester",
+      "finish": "",
+      "moq": "300 Kg"
+    }
+  },
+  {
+    "id": "jaquard",
+    "name": "JAQUARD",
+    "categoryId": "Sportswear",
+    "categoryName": "Sportswear/Active Wear",
+    "image": "images/FP1.jpg",
+    "description": "Premium quality sportswear/active wear.",
+    "specs": {
+      "gsm": "180",
+      "width": "42” ",
+      "composition": "Polycotton",
+      "finish": "",
+      "moq": "500 Kg"
+    }
+  },
+  {
+    "id": "reebok-knit",
+    "name": "REEBOK KNIT",
+    "categoryId": "Sportswear",
+    "categoryName": "Sportswear/Active Wear",
+    "image": "REEBOK KNIT/Variant - Crimson Flow.png",
+    "description": "Premium quality sportswear/active wear.",
+    "specs": {
+      "gsm": "150 / 200",
+      "width": "42” ",
+      "composition": "100% Polyester",
+      "finish": "",
+      "moq": "300 Kg"
+    }
+  },
+  {
+    "id": "sap-matty",
+    "name": "SAP MATTY",
+    "categoryId": "Uniform",
+    "categoryName": "Uniform Fabrics",
+    "image": "images/QC1.jpg",
+    "description": "Premium quality uniform fabrics.",
+    "specs": {
+      "gsm": "180 / 200",
+      "width": "42” ",
+      "composition": "100% Polyester",
+      "finish": "",
+      "moq": "300 Kg"
+    }
+  },
+  {
+    "id": "spun-matty",
+    "name": "SPUN MATTY",
+    "categoryId": "Uniform",
+    "categoryName": "Uniform Fabrics",
+    "image": "SPUN MATTY(BEIGE)/1.jpg",
+    "description": "Premium quality uniform fabrics.",
+    "specs": {
+      "gsm": "200/250",
+      "width": "42”-48\"",
+      "composition": "100% Polyester",
+      "finish": "",
+      "moq": "300 Kg"
+    }
+  },
+  {
+    "id": "pc-matty",
+    "name": "PC MATTY",
+    "categoryId": "Uniform",
+    "categoryName": "Uniform Fabrics",
+    "image": "images/QC1.jpg",
+    "description": "Premium quality uniform fabrics.",
+    "specs": {
+      "gsm": "200/240",
+      "width": "42” – 48”",
+      "composition": "Polycotton",
+      "finish": "",
+      "moq": "100 Kg"
+    }
+  },
+  {
+    "id": "airjet-matty",
+    "name": "AIRJET MATTY",
+    "categoryId": "Uniform",
+    "categoryName": "Uniform Fabrics",
+    "image": "images/QC1.jpg",
+    "description": "Premium quality uniform fabrics.",
+    "specs": {
+      "gsm": "180 / 200",
+      "width": "42” – 46”",
+      "composition": "100% Polyester",
+      "finish": "",
+      "moq": "300 Kg"
+    }
+  },
+  {
+    "id": "spun-p-knit",
+    "name": "SPUN P KNIT",
+    "categoryId": "Uniform",
+    "categoryName": "Uniform Fabrics",
+    "image": "images/QC1.jpg",
+    "description": "Premium quality uniform fabrics.",
+    "specs": {
+      "gsm": "150 / 200",
+      "width": "42” tube ",
+      "composition": "100% Polyester",
+      "finish": "",
+      "moq": "300 Kg"
+    }
+  },
+  {
+    "id": "pc-p-knit",
+    "name": "PC P KNIT",
+    "categoryId": "Uniform",
+    "categoryName": "Uniform Fabrics",
+    "image": "images/QC1.jpg",
+    "description": "PC Knit fabric is a soft, breathable, and durable blend of polyester and cotton, offering comfort with enhanced strength and easy care—ideal for everyday wear.",
+    "specs": {
+      "gsm": "180 / 200",
+      "width": "42\"",
+      "composition": "Polycotton",
+      "finish": "",
+      "moq": "300 Kg"
+    }
+  },
+  {
+    "id": "nirmal-knit-uniform",
+    "name": "NIRMAL KNIT",
+    "categoryId": "Uniform",
+    "categoryName": "Uniform Fabrics",
+    "image": "images/QC1.jpg",
+    "description": "Premium quality uniform fabrics.",
+    "specs": {
+      "gsm": "180 / 200",
+      "width": "42” – 46”",
+      "composition": "100% Cotton",
+      "finish": "Bio Wash / Compact",
+      "moq": "100 Kg"
+    }
+  },
+  {
+    "id": "spun-fleece",
+    "name": "SPUN FLEECE",
+    "categoryId": "fleece",
+    "categoryName": "Winter Wear Fabrics",
+    "image": "images/FP2.jpg",
+    "description": "Premium quality winter wear fabrics.",
+    "specs": {
+      "gsm": "230/300 ",
+      "width": "38” – 42”",
+      "composition": "100% Polyester",
+      "finish": "NA",
+      "moq": "300 kg"
+    }
+  },
+  {
+    "id": "pc-fleece",
+    "name": "PC FLEECE",
+    "categoryId": "fleece",
+    "categoryName": "Winter Wear Fabrics",
+    "image": "images/FP2.jpg",
+    "description": "Premium quality winter wear fabrics.",
+    "specs": {
+      "gsm": "180 / 200",
+      "width": "42” – 46”",
+      "composition": "100% Cotton",
+      "finish": "Bio Wash / Compact",
+      "moq": "100 Kg"
+    }
+  },
+  {
+    "id": "airjet-fleece",
+    "name": "AIRJET FLEECE",
+    "categoryId": "fleece",
+    "categoryName": "Winter Wear Fabrics",
+    "image": "images/FP2.jpg",
+    "description": "Premium quality winter wear fabrics.",
+    "specs": {
+      "gsm": "180 / 200",
+      "width": "42” – 46”",
+      "composition": "100% Cotton",
+      "finish": "Bio Wash / Compact",
+      "moq": "100 Kg"
+    }
+  },
+  {
+    "id": "thermal-fleece",
+    "name": "THERMAL FLEECE",
+    "categoryId": "fleece",
+    "categoryName": "Winter Wear Fabrics",
+    "image": "images/FP2.jpg",
+    "description": "Premium quality winter wear fabrics.",
+    "specs": {
+      "gsm": "200 / 250",
+      "width": "56\" tube ",
+      "composition": "50% Cotton -50% Polyester",
+      "finish": "NA",
+      "moq": "300 Kg"
+    }
+  },
+  {
+    "id": "pc-birdeye",
+    "name": "PC BIRDEYE",
+    "categoryId": "Casual",
+    "categoryName": "Casual Wear Fabrics",
+    "image": "images/movement.jpg",
+    "description": "Premium quality casual wear fabrics.",
+    "specs": {
+      "gsm": "190 / 200",
+      "width": "72\"Open",
+      "composition": "50% Cotton-50% Polyester",
+      "finish": "NA",
+      "moq": "300kg"
+    }
+  },
+  {
+    "id": "crochet",
+    "name": "CROCHET",
+    "categoryId": "Casual",
+    "categoryName": "Casual Wear Fabrics",
+    "image": "images/movement.jpg",
+    "description": "Premium quality casual wear fabrics.",
+    "specs": {
+      "gsm": "180 / 200",
+      "width": "42” – 46”",
+      "composition": "100% Cotton",
+      "finish": "Bio Wash / Compact",
+      "moq": "100 Kg"
+    }
+  },
+  {
+    "id": "interlock",
+    "name": "INTERLOCK",
+    "categoryId": "Casual",
+    "categoryName": "Casual Wear Fabrics",
+    "image": "images/movement.jpg",
+    "description": "Premium quality casual wear fabrics.",
+    "specs": {
+      "gsm": "180 / 200",
+      "width": "42” – 46”",
+      "composition": "100% Cotton",
+      "finish": "Bio Wash / Compact",
+      "moq": "100 Kg"
+    }
+  },
+  {
+    "id": "sinker",
+    "name": "SINKER",
+    "categoryId": "Casual",
+    "categoryName": "Casual Wear Fabrics",
+    "image": "images/movement.jpg",
+    "description": "Premium quality casual wear fabrics.",
+    "specs": {
+      "gsm": "180 / 200",
+      "width": "42” – 46”",
+      "composition": "100% Cotton",
+      "finish": "Bio Wash / Compact",
+      "moq": "100 Kg"
+    }
+  },
+  {
+    "id": "loop-knit",
+    "name": "LOOP KNIT",
+    "categoryId": "Casual",
+    "categoryName": "Casual Wear Fabrics",
+    "image": "images/movement.jpg",
+    "description": "Premium quality casual wear fabrics.",
+    "specs": {
+      "gsm": "180 / 200",
+      "width": "42” – 46”",
+      "composition": "100% Cotton",
+      "finish": "Bio Wash / Compact",
+      "moq": "100 Kg"
+    }
+  },
+  {
+    "id": "waffle",
+    "name": "WAFFLE",
+    "categoryId": "Casual",
+    "categoryName": "Casual Wear Fabrics",
+    "image": "images/movement.jpg",
+    "description": "Premium quality casual wear fabrics.",
+    "specs": {
+      "gsm": "200",
+      "width": "72\" Open ",
+      "composition": "100% Polyester",
+      "finish": "NA",
+      "moq": "300 Kg"
+    }
+  },
+  {
+    "id": "zara-knit",
+    "name": "ZARA KNIT",
+    "categoryId": "Casual",
+    "categoryName": "Casual Wear Fabrics",
+    "image": "images/movement.jpg",
+    "description": "Premium quality casual wear fabrics.",
+    "specs": {
+      "gsm": "180 / 200",
+      "width": "42” – 46”",
+      "composition": "100% Cotton",
+      "finish": "Bio Wash / Compact",
+      "moq": "100 Kg"
+    }
+  },
+  {
+    "id": "ketonic",
+    "name": "KETONIC",
+    "categoryId": "Casual",
+    "categoryName": "Casual Wear Fabrics",
+    "image": "images/movement.jpg",
+    "description": "Premium quality casual wear fabrics.",
+    "specs": {
+      "gsm": "180 / 200",
+      "width": "42” – 46”",
+      "composition": "100% Cotton",
+      "finish": "Bio Wash / Compact",
+      "moq": "100 Kg"
+    }
+  }
+]
