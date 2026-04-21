@@ -1,134 +1,114 @@
-﻿
 const fs = require('fs');
 const path = require('path');
 
 const rootDir = __dirname;
 const templatePath = path.join(rootDir, 'DOT KNIT.html');
 const productsPath = path.join(rootDir, 'products.html');
+const dataPath = path.join(rootDir, 'data', 'fabrics.json');
 
-const categories = [
-    {
-        name: 'Sportswear/Active Wear',
-        id: 'Sportswear',
-        products: [
-            'DOT KNIT', 'MICRO PP', 'RICE KNIT', 'NIRMAL KNIT', 'SARINA',
-            'FOOTBALL', 'CROWN KNIT', 'BOX KNIT', 'POPCORN KNIT', 'JAQUARD', 'REEBOK KNIT'
-        ],
-        texture: 'images/FP1.jpg' // Fallback
-    },
-    {
-        name: 'Uniform Fabrics',
-        id: 'Uniform',
-        products: [
-            'SAP MATTY', 'SPUN MATTY', 'PC MATTY', 'AIRJET MATTY',
-            'SPUN P KNIT', 'PC P KNIT', 'NIRMAL KNIT'
-        ],
-        texture: 'images/QC1.jpg' // Fallback
-    },
-    {
-        name: 'Winter Wear Fabrics',
-        id: 'fleece', // Lowercase to match existing convention if any, but I'll standardise
-        products: [
-            'SPUN FLEECE', 'PC FLEECE', 'AIRJET FLEECE', 'THERMAL FLEECE'
-        ],
-        texture: 'images/FP2.jpg' // Fallback
-    },
-    {
-        name: 'Casual Wear Fabrics',
-        id: 'Casual',
-        products: [
-            'PC BIRDEYE', 'CROCHET', 'INTERLOCK', 'SINKER',
-            'LOOP KNIT', 'WAFFLE', 'ZARA KNIT', 'KETONIC'
-        ],
-        texture: 'images/movement.jpg' // Fallback
-    }
-];
-
-// Special image mappings based on directory listing
-const imageMappings = {
-    'DOT KNIT': 'DOT KNIT(MAROON)/MAROON 1.jpg',
-    'MICRO PP': 'MICRO PP/1.jpg', // Assumption, need to verify or use generic
-    'SPUN MATTY': 'SPUN MATTY(BEIGE)/1.jpg' // Assumption
-};
-
-function getProductImage(productName, defaultInfo) {
-    if (imageMappings[productName]) return imageMappings[productName];
-    // Simple check if specific folder exists (simulated since I can't browse dynamically easily in node without more code)
-    // For this environment, I'll stick to the default unless mapped above.
-    // However, for the ones mapped, I should be careful if file doesn't exist.
-    // Given I saw directories, I'll assume standard naming or fallback.
-
-    // Better fallback:
-    return defaultInfo.texture;
+// Read fabrics data
+let fabrics = [];
+try {
+    const data = fs.readFileSync(dataPath, 'utf8');
+    fabrics = JSON.parse(data);
+} catch (error) {
+    console.error("Error reading fabrics.json:", error.message);
+    process.exit(1);
 }
+
+// Categories definitions based on existing architecture for filters
+const categoryDefs = [
+    { id: 'Sportswear', name: 'Sportswear', filterName: 'Sportswear' },
+    { id: 'Uniform', name: 'Uniform Fabrics', filterName: 'Uniform' },
+    { id: 'fleece', name: 'Winter Wear Fabrics', filterName: 'Winter Wear' },
+    { id: 'Casual', name: 'Casual Wear Fabrics', filterName: 'Casual Wear' }
+];
 
 const templateContent = fs.readFileSync(templatePath, 'utf8');
 
 let productsGridHTML = '';
 
-categories.forEach(cat => {
-    cat.products.forEach(prodName => {
-        // 1. Create Product Page
-        let pageContent = templateContent;
+fabrics.forEach(fabric => {
+    // 1. Create Product Page for each fabric
+    let pageContent = templateContent;
 
-        // Replace Title
-        pageContent = pageContent.replace(/<h2>DOT KNIT<\/h2>/g, `<h2>${prodName}</h2>`);
-        pageContent = pageContent.replace(/<title>Mars Knit<\/title>/g, `<title>${prodName} | RK Knit Fab</title>`);
+    const prodName = fabric.name;
+    const catName = fabric.categoryName;
+    const imgSrc = fabric.image || 'https://placehold.co/600x400?text=' + encodeURIComponent(prodName);
 
-        // Replace Breadcrumb/Subtitle
-        // Existing: <div class="subtitle">Sportswear · Factory Manufactured</div>
-        pageContent = pageContent.replace(/Sportswear · Factory Manufactured/g, `${cat.name} · Factory Manufactured`);
+    // Replace Title
+    // Using regex to handle slight variations but mostly targeting the main title
+    // Since template relies on 'DOT KNIT' original strings, we assume template still has DOT KNIT or similar placeholder.
+    // Actually template might have been overwritten if they ran this before. 
+    // Wait, the previous script generates files but uses 'DOT KNIT.html' as template. If DOT KNIT was also generated from DOT KNIT.html...
+    // The previous script used: 
+    // pageContent = pageContent.replace(/<h2>DOT KNIT<\/h2>/g, `<h2>${prodName}</h2>`);
+    // pageContent = pageContent.replace(/<title>Mars Knit<\/title>/g, `<title>${prodName} | RK Knit Fab</title>`);
+    pageContent = pageContent.replace(/<h2>.*?<\/h2>/, `<h2>${prodName}</h2>`);
+    pageContent = pageContent.replace(/<title>.*?<\/title>/, `<title>${prodName} | RK Knit Fab</title>`);
 
-        // Replace Image in Slider (Just first one for now as we don't have multiple for all)
-        const imgSrc = getProductImage(prodName, cat);
-        // Regex to replace the first image in slider
-        // <img src="DOT KNIT(MAROON)/MAROON 1.jpg">
-        // We'll replace the entire slides div content with just one image for new pages to avoid broken links
-        // UNLESS it is Dot Knit itself.
+    // Replace Breadcrumb
+    pageContent = pageContent.replace(/<div class="subtitle">.*?<\/div>/, `<div class="subtitle">${catName} · Factory Manufactured</div>`);
 
-        if (prodName !== 'DOT KNIT') {
-            const newSlides = `<img src="${imgSrc}" alt="${prodName}">`;
-            pageContent = pageContent.replace(/<div class="slides" id="slides">[\s\S]*?<\/div>/, `<div class="slides" id="slides">\n${newSlides}\n</div>`);
-        }
+    // Replace Image (only if it's not the exact template product to avoid breaking the original completely, or just replace it always)
+    const newSlides = `<img src="${imgSrc}" alt="${prodName}">`;
+    pageContent = pageContent.replace(/<div class="slides" id="slides">[\s\S]*?<\/div>/, `<div class="slides" id="slides">\n${newSlides}\n</div>`);
 
-        const fileName = `${prodName}.html`;
-        fs.writeFileSync(path.join(rootDir, fileName), pageContent);
-        console.log(`Created ${fileName}`);
+    // Replace Specs Table
+    const specs = fabric.specs || {};
+    const newSpecsTable = `
+        <table class="spec-table">
+          <tr>
+            <td>GSM</td>
+            <td>${specs.gsm || 'N/A'}</td>
+          </tr>
+          <tr>
+            <td>Width</td>
+            <td>${specs.width || 'N/A'}</td>
+          </tr>
+          <tr>
+            <td>Composition</td>
+            <td>${specs.composition || 'N/A'}</td>
+          </tr>
+          <tr>
+            <td>Finish</td>
+            <td>${specs.finish || 'N/A'}</td>
+          </tr>
+          <tr>
+            <td>MOQ</td>
+            <td>${specs.moq || 'N/A'}</td>
+          </tr>
+        </table>
+    `;
+    pageContent = pageContent.replace(/<table class="spec-table">[\s\S]*?<\/table>/, newSpecsTable.trim());
 
-        // 2. Add to Products Grid List
-        // Template for card:
-        /*
-        <a href="DOT KNIT.html" class="product-card" data-category="Uniform">
-            <span class="tag">Uniform</span>
-            <img src="DOT KNIT(MAROON)/MAROON 1.jpg">
-            <div class="product-overlay">
-            <h4>DOT KNIT</h4>
-            <p>Soft, breathable fabric for t-shirts & casual wear</p>
-            <span class="view-btn">View Details</span>
-            </div>
-        </a>
-        */
+    const fileName = `${prodName}.html`;
+    fs.writeFileSync(path.join(rootDir, fileName), pageContent);
+    console.log(`Created ${fileName}`);
 
-        productsGridHTML += `
-      <a href="${fileName}" class="product-card" data-category="${cat.id}">
-        <span class="tag">${cat.name}</span>
-        <img src="${imgSrc}" loading="lazy" alt="${prodName}">
-        <div class="product-overlay">
+    // 2. Add to Products Grid List
+    productsGridHTML += `
+      <a href="${fileName}" class="product-card" data-category="${fabric.categoryId}">
+        <div class="card-image-wrapper">
+          <span class="tag">${fabric.categoryName}</span>
+          <img src="${imgSrc}" loading="lazy" alt="${prodName}"
+          onerror="this.src='https://placehold.co/600x400?text=${encodeURIComponent(prodName)}'">
+        </div>
+        <div class="product-content">
           <h4>${prodName}</h4>
-          <p>Premium quality ${cat.name.toLowerCase()}.</p>
+          <p>${fabric.description}</p>
           <span class="view-btn">View Details</span>
         </div>
       </a>\n`;
-    });
 });
 
-// Update products.html
+// 3. Update products.html
 let productsContent = fs.readFileSync(productsPath, 'utf8');
 
 // Update Filter Buttons
 const newFilters = `
-      <button class="filter-btn active" data-filter="all">All</button>
-      ${categories.map(c => `<button class="filter-btn" data-filter="${c.id}">${c.name}</button>`).join('\n      ')}
+      <button class="filter-btn active" data-filter="all">All Fabrics</button>
+      ${categoryDefs.map(c => `<button class="filter-btn" data-filter="${c.id}">${c.filterName}</button>`).join('\n      ')}
 `;
 
 productsContent = productsContent.replace(
@@ -143,4 +123,4 @@ productsContent = productsContent.replace(
 );
 
 fs.writeFileSync(productsPath, productsContent);
-console.log('Updated products.html');
+console.log('Updated products.html based on fabrics.json!');

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | RK Knit Fab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="icon" type="image/png" href="images/RKKNITFABLOGO.png">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="images/RKKNITFABLOGO.png" alt="RK Knit Fab Logo" class="logo">
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="/" class="nav-item return-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    Back to Site
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="topbar">
+                <div>
+                    <h1>Fabric Management</h1>
+                    <p class="subtitle">View and update fabric specifications</p>
+                </div>
+                <div class="topbar-actions">
+                    <!-- Future search or filter could go here -->
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <div class="grid" id="fabric-grid">
+                    <!-- Fabrics will be loaded here dynamically -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Modal -->
+    <div class="modal-backdrop" id="edit-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Edit Fabric</h2>
+                <button class="close-btn" id="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-form">
+                    <input type="hidden" id="edit-id">
+
+                    <div class="form-group span-2">
+                        <label for="edit-name">Fabric Name</label>
+                        <input type="text" id="edit-name" disabled class="disabled-input"
+                            title="Name changes not supported directly here to prevent file mismatch">
+                    </div>
+
+                    <div class="form-group span-2">
+                        <label for="edit-description">Description</label>
+                        <textarea id="edit-description" rows="2"></textarea>
+                    </div>
+
+                    <div class="form-header span-2">Specifications</div>
+
+                    <div class="form-group">
+                        <label for="spec-gsm">GSM</label>
+                        <input type="text" id="spec-gsm" placeholder="e.g. 180 / 200">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="spec-width">Width</label>
+                        <input type="text" id="spec-width" placeholder="e.g. 42” – 46”">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="spec-composition">Composition</label>
+                        <input type="text" id="spec-composition" placeholder="e.g. 100% Cotton">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="spec-finish">Finish</label>
+                        <input type="text" id="spec-finish" placeholder="e.g. Bio Wash">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="spec-moq">MOQ</label>
+                        <input type="text" id="spec-moq" placeholder="e.g. 100 Kg">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancel-btn">Cancel</button>
+                <button class="btn btn-primary" id="save-btn">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="admin.js"></script>
+</body>
+
+</html>
